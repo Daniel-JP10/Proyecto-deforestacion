@@ -24,33 +24,50 @@
 </head>
 <body>
 
-    <!-- HERO SECTION - 100vh con imagen de vegetación -->
-    <header class="hero">
+    <!-- HERO SECTION -->
+    <header class="hero" id="hero">
         <div class="hero-overlay"></div>
+        
+        <!-- Floating leaves particles -->
+        <div class="hero-particles" id="heroParticles"></div>
+        
         <div class="hero-content">
+            <div class="hero-tag">
+                <i data-lucide="leaf"></i>
+                <span>Investigación Ambiental 2026</span>
+            </div>
             <h1 class="hero-title">El Paraíso que se Borra</h1>
             <p class="hero-subtitle">Mientras Cartagena recibe más turistas que nunca, sus manglares y bosques costeros desaparecen silenciosamente. Cuatro zonas, una misma historia.</p>
             
             <div class="hero-stats">
                 <div class="hero-stat-card">
-                    <span class="stat-number">3.1 kha</span>
-                    <span class="stat-label">Pérdida Forestal</span>
-                    <span class="stat-period">2001-2024</span>
+                    <div class="stat-icon-circle">
+                        <i data-lucide="tree-pine"></i>
+                    </div>
+                    <span class="stat-number">3,100</span>
+                    <span class="stat-label">Hectáreas Perdidas</span>
+                    <span class="stat-period">2001-2024 · Fuente: GFW</span>
                 </div>
                 <div class="hero-stat-card">
+                    <div class="stat-icon-circle">
+                        <i data-lucide="users"></i>
+                    </div>
                     <span class="stat-number">4.8M</span>
                     <span class="stat-label">Turistas en 2024</span>
-                    <span class="stat-period">+17% vs 2023</span>
+                    <span class="stat-period">+17% vs 2023 · Corp. Turismo</span>
                 </div>
                 <div class="hero-stat-card">
+                    <div class="stat-icon-circle">
+                        <i data-lucide="leaf"></i>
+                    </div>
                     <span class="stat-number">17%</span>
                     <span class="stat-label">Cobertura Restante</span>
-                    <span class="stat-period">De bosques y manglares</span>
+                    <span class="stat-period">De bosques y manglares · IDEAM</span>
                 </div>
             </div>
         </div>
         
-        <div class="scroll-indicator">
+        <div class="scroll-indicator" id="scrollIndicator">
             <div class="mouse">
                 <div class="wheel"></div>
             </div>
@@ -58,18 +75,35 @@
         </div>
     </header>
 
-    <!-- MAIN DASHBOARD -->
-    <main class="dashboard">
+    <!-- TRANSITION SECTION -->
+    <section class="context-transition" data-animate="fade-up">
+        <div class="context-inner">
+            <div class="context-icon">
+                <i data-lucide="scan-search"></i>
+            </div>
+            <h2>Explora el Impacto Ambiental</h2>
+            <p>Selecciona una de las cuatro zonas de estudio para descubrir cómo la deforestación ha transformado el paisaje de la región de Cartagena entre 2010 y 2024.</p>
+            <div class="context-zones-preview">
+                <span class="zone-chip" data-zone="cartagena"><i data-lucide="building-2"></i> Cartagena</span>
+                <span class="zone-chip" data-zone="tierra-bomba"><i data-lucide="anchor"></i> Tierra Bomba</span>
+                <span class="zone-chip" data-zone="boquilla"><i data-lucide="trees"></i> La Boquilla</span>
+                <span class="zone-chip" data-zone="baru"><i data-lucide="umbrella"></i> Barú</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- MAIN DASHBOARD (Sidebar + Content) -->
+    <main class="dashboard" id="dashboard">
         
         <!-- SIDEBAR: SELECCIÓN DE ZONAS -->
-        <aside class="sidebar">
+        <aside class="sidebar" id="sidebar">
             <div class="sidebar-header">
                 <i data-lucide="map-pin"></i>
                 <h2>Zonas de Análisis</h2>
             </div>
             
             <nav class="zone-nav">
-                <button class="zone-btn" data-zone="cartagena">
+                <button class="zone-btn active" data-zone="cartagena">
                     <div class="zone-icon">
                         <i data-lucide="building-2"></i>
                     </div>
@@ -82,7 +116,7 @@
 
                 <button class="zone-btn" data-zone="tierra-bomba">
                     <div class="zone-icon">
-                        <i data-lucide="island"></i>
+                        <i data-lucide="anchor"></i>
                     </div>
                     <div class="zone-info">
                         <span class="zone-name">Tierra Bomba</span>
@@ -121,41 +155,16 @@
         </aside>
 
         <!-- CONTENT AREA -->
-        <section class="content-area">
+        <section class="content-area" id="contentArea">
             
-            <!-- PLACEHOLDER STATE (Visible inicialmente) -->
-            <div class="placeholder-state" id="placeholderState">
-                <div class="placeholder-content">
-                    <div class="placeholder-icon">
-                        <i data-lucide="map"></i>
-                    </div>
-                    <h3>Explora el impacto de la deforestación</h3>
-                    <p>Selecciona una de las cuatro zonas en el menú lateral para comenzar el análisis detallado de pérdida de cobertura vegetal, factores externos y tendencias temporales.</p>
-                    <div class="placeholder-hints">
-                        <div class="hint">
-                            <i data-lucide="trending-down"></i>
-                            <span>Gráficas temporales interactivas</span>
-                        </div>
-                        <div class="hint">
-                            <i data-lucide="map"></i>
-                            <span>Mapas de cobertura forestal</span>
-                        </div>
-                        <div class="hint">
-                            <i data-lucide="circle-help"></i>
-                            <span>Factores de presión ambiental</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- DATA SECTION (Oculta inicialmente) -->
-            <div class="data-section hidden" id="dataSection">
+            <!-- DATA SECTION (Se carga automáticamente con Cartagena) -->
+            <div class="data-section" id="dataSection">
                 
                 <!-- VISUALIZACIONES: GRÁFICA + MAPA -->
                 <div class="visualizations">
                     
                     <!-- GRÁFICA TEMPORAL -->
-                    <div class="card chart-card">
+                    <div class="card chart-card glass-card">
                         <div class="card-header">
                             <div>
                                 <h3><i data-lucide="trending-down"></i> Cobertura Vegetal (%)</h3>
@@ -187,7 +196,7 @@
                     </div>
 
                     <!-- MAPA INTERACTIVO -->
-                    <div class="card map-card">
+                    <div class="card map-card glass-card">
                         <div class="card-header">
                             <div>
                                 <h3><i data-lucide="map"></i> Mapa de Cobertura</h3>
@@ -214,7 +223,7 @@
                                 <span>Ganancia forestal</span>
                             </div>
                             <div class="legend-box">
-                                <span class="legend-color" style="background: #4A90E2; opacity: 0.5;"></span>
+                                <span class="legend-color" style="background: rgba(74, 144, 226, 0.5);"></span>
                                 <span>Agua</span>
                             </div>
                         </div>
@@ -231,7 +240,7 @@
                     </div>
 
                     <div class="story-stats-grid">
-                        <div class="story-stat-card">
+                        <div class="story-stat-card" data-animate="fade-up" data-delay="0">
                             <div class="stat-icon-wrapper">
                                 <i data-lucide="tree-deciduous" class="stat-icon"></i>
                             </div>
@@ -242,7 +251,7 @@
                             </div>
                         </div>
 
-                        <div class="story-stat-card">
+                        <div class="story-stat-card" data-animate="fade-up" data-delay="100">
                             <div class="stat-icon-wrapper">
                                 <i data-lucide="users" class="stat-icon"></i>
                             </div>
@@ -253,7 +262,7 @@
                             </div>
                         </div>
 
-                        <div class="story-stat-card">
+                        <div class="story-stat-card" data-animate="fade-up" data-delay="200">
                             <div class="stat-icon-wrapper">
                                 <i data-lucide="triangle-alert" class="stat-icon"></i>
                             </div>
@@ -264,7 +273,7 @@
                             </div>
                         </div>
 
-                        <div class="story-stat-card">
+                        <div class="story-stat-card" data-animate="fade-up" data-delay="300">
                             <div class="stat-icon-wrapper">
                                 <i data-lucide="cloud" class="stat-icon"></i>
                             </div>
@@ -300,475 +309,114 @@
                 </div>
             </div>
 
-            <!-- SECCIÓN DE COMPARACIÓN (Aparece al hacer scroll) -->
-            <section class="comparison-section" id="comparisonSection">
-                <div class="section-header">
-                    <h2>Comparación entre Zonas</h2>
-                    <p>Análisis comparativo 2010-2024: pérdida de cobertura y presión turística</p>
-                </div>
-
-                <div class="comparison-tabs">
-                    <button class="tab-btn active" data-tab="overview">
-                        <i data-lucide="layout-grid"></i>
-                        Vista General
-                    </button>
-                    <button class="tab-btn" data-tab="loss">
-                        <i data-lucide="trending-down"></i>
-                        Pérdida Forestal
-                    </button>
-                    <button class="tab-btn" data-tab="pressure">
-                        <i data-lucide="activity"></i>
-                        Presión Ambiental
-                    </button>
-                </div>
-
-                <div class="tab-content active" id="tab-overview">
-                    <div class="comparison-grid">
-                        <!-- Cartagena -->
-                        <div class="compare-card" data-zone="cartagena">
-                            <div class="card-header">
-                                <div>
-                                    <h3>Cartagena</h3>
-                                    <span class="badge type-urban">Urbana</span>
-                                </div>
-                                <div class="ranking-badge rank-4">4°</div>
-                            </div>
-                            
-                            <div class="mini-chart-container">
-                                <canvas id="spark-cartagena"></canvas>
-                            </div>
-                            
-                            <div class="metrics-grid">
-                                <div class="metric-item">
-                                    <div class="metric-label">Pérdida total</div>
-                                    <div class="metric-value loss">-17%</div>
-                                    <div class="metric-detail">3,100 ha</div>
-                                </div>
-                                <div class="metric-item">
-                                    <div class="metric-label">Turismo 2024</div>
-                                    <div class="metric-value tourism">4.8M</div>
-                                    <div class="metric-detail">+17% vs 2023</div>
-                                </div>
-                                <div class="metric-item">
-                                    <div class="metric-label">Riesgo erosión</div>
-                                    <div class="metric-value risk high">ALTO</div>
-                                </div>
-                            </div>
-
-                            <div class="progress-bars">
-                                <div class="progress-item">
-                                    <div class="progress-label">
-                                        <span>Desarrollo hotelero</span>
-                                        <span class="progress-value">85%</span>
-                                    </div>
-                                    <div class="progress-bar">
-                                        <div class="progress-fill" style="--progress: 85%"></div>
-                                    </div>
-                                </div>
-                                <div class="progress-item">
-                                    <div class="progress-label">
-                                        <span>Presión turística</span>
-                                        <span class="progress-value">92%</span>
-                                    </div>
-                                    <div class="progress-bar">
-                                        <div class="progress-fill" style="--progress: 92%"></div>
-                                    </div>
-                                </div>
-                                <div class="progress-item">
-                                    <div class="progress-label">
-                                        <span>Conservación</span>
-                                        <span class="progress-value">35%</span>
-                                    </div>
-                                    <div class="progress-bar">
-                                        <div class="progress-fill conservation" style="--progress: 35%"></div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Tierra Bomba -->
-                        <div class="compare-card featured" data-zone="tierra-bomba">
-                            <div class="featured-badge">
-                                <i data-lucide="triangle-alert"></i>
-                                Mayor impacto
-                            </div>
-                            <div class="card-header">
-                                <div>
-                                    <h3>Tierra Bomba</h3>
-                                    <span class="badge type-island">Isla</span>
-                                </div>
-                                <div class="ranking-badge rank-1">1°</div>
-                            </div>
-                            
-                            <div class="mini-chart-container">
-                                <canvas id="spark-tierra-bomba"></canvas>
-                            </div>
-                            
-                            <div class="metrics-grid">
-                                <div class="metric-item">
-                                    <div class="metric-label">Pérdida total</div>
-                                    <div class="metric-value loss critical">-25%</div>
-                                    <div class="metric-detail">450 ha</div>
-                                </div>
-                                <div class="metric-item">
-                                    <div class="metric-label">Turismo</div>
-                                    <div class="metric-value tourism">Alto</div>
-                                    <div class="metric-detail">+22% anual</div>
-                                </div>
-                                <div class="metric-item">
-                                    <div class="metric-label">Riesgo erosión</div>
-                                    <div class="metric-value risk critical">CRÍTICO</div>
-                                </div>
-                            </div>
-
-                            <div class="progress-bars">
-                                <div class="progress-item">
-                                    <div class="progress-label">
-                                        <span>Desarrollo hotelero</span>
-                                        <span class="progress-value">95%</span>
-                                    </div>
-                                    <div class="progress-bar">
-                                        <div class="progress-fill" style="--progress: 95%"></div>
-                                    </div>
-                                </div>
-                                <div class="progress-item">
-                                    <div class="progress-label">
-                                        <span>Erosión costera</span>
-                                        <span class="progress-value">98%</span>
-                                    </div>
-                                    <div class="progress-bar">
-                                        <div class="progress-fill" style="--progress: 98%"></div>
-                                    </div>
-                                </div>
-                                <div class="progress-item">
-                                    <div class="progress-label">
-                                        <span>Conservación</span>
-                                        <span class="progress-value">22%</span>
-                                    </div>
-                                    <div class="progress-bar">
-                                        <div class="progress-fill conservation" style="--progress: 22%"></div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- La Boquilla -->
-                        <div class="compare-card" data-zone="boquilla">
-                            <div class="card-header">
-                                <div>
-                                    <h3>La Boquilla</h3>
-                                    <span class="badge type-manglar">Manglar</span>
-                                </div>
-                                <div class="ranking-badge rank-3">3°</div>
-                            </div>
-                            
-                            <div class="mini-chart-container">
-                                <canvas id="spark-boquilla"></canvas>
-                            </div>
-                            
-                            <div class="metrics-grid">
-                                <div class="metric-item">
-                                    <div class="metric-label">Pérdida total</div>
-                                    <div class="metric-value loss low">-5%</div>
-                                    <div class="metric-detail">120 ha</div>
-                                </div>
-                                <div class="metric-item">
-                                    <div class="metric-label">Turismo</div>
-                                    <div class="metric-value tourism">Medio</div>
-                                    <div class="metric-detail">+12% anual</div>
-                                </div>
-                                <div class="metric-item">
-                                    <div class="metric-label">Riesgo erosión</div>
-                                    <div class="metric-value risk medium">MEDIO</div>
-                                </div>
-                            </div>
-
-                            <div class="progress-bars">
-                                <div class="progress-item">
-                                    <div class="progress-label">
-                                        <span>Presión urbana</span>
-                                        <span class="progress-value">45%</span>
-                                    </div>
-                                    <div class="progress-bar">
-                                        <div class="progress-fill" style="--progress: 45%"></div>
-                                    </div>
-                                </div>
-                                <div class="progress-item">
-                                    <div class="progress-label">
-                                        <span>Turismo comunitario</span>
-                                        <span class="progress-value">52%</span>
-                                    </div>
-                                    <div class="progress-bar">
-                                        <div class="progress-fill" style="--progress: 52%"></div>
-                                    </div>
-                                </div>
-                                <div class="progress-item">
-                                    <div class="progress-label">
-                                        <span>Conservación</span>
-                                        <span class="progress-value">78%</span>
-                                    </div>
-                                    <div class="progress-bar">
-                                        <div class="progress-fill conservation" style="--progress: 78%"></div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Barú -->
-                        <div class="compare-card" data-zone="baru">
-                            <div class="card-header">
-                                <div>
-                                    <h3>Barú</h3>
-                                    <span class="badge type-coastal">Costera</span>
-                                </div>
-                                <div class="ranking-badge rank-2">2°</div>
-                            </div>
-                            
-                            <div class="mini-chart-container">
-                                <canvas id="spark-baru"></canvas>
-                            </div>
-                            
-                            <div class="metrics-grid">
-                                <div class="metric-item">
-                                    <div class="metric-label">Pérdida total</div>
-                                    <div class="metric-value loss">-12%</div>
-                                    <div class="metric-detail">200 ha</div>
-                                </div>
-                                <div class="metric-item">
-                                    <div class="metric-label">Turismo</div>
-                                    <div class="metric-value tourism">Muy Alto</div>
-                                    <div class="metric-detail">+30% anual</div>
-                                </div>
-                                <div class="metric-item">
-                                    <div class="metric-label">Riesgo erosión</div>
-                                    <div class="metric-value risk high">ALTO</div>
-                                </div>
-                            </div>
-
-                            <div class="progress-bars">
-                                <div class="progress-item">
-                                    <div class="progress-label">
-                                        <span>Turismo masivo</span>
-                                        <span class="progress-value">96%</span>
-                                    </div>
-                                    <div class="progress-bar">
-                                        <div class="progress-fill" style="--progress: 96%"></div>
-                                    </div>
-                                </div>
-                                <div class="progress-item">
-                                    <div class="progress-label">
-                                        <span>Construcción ilegal</span>
-                                        <span class="progress-value">88%</span>
-                                    </div>
-                                    <div class="progress-bar">
-                                        <div class="progress-fill" style="--progress: 88%"></div>
-                                    </div>
-                                </div>
-                                <div class="progress-item">
-                                    <div class="progress-label">
-                                        <span>Conservación</span>
-                                        <span class="progress-value">48%</span>
-                                    </div>
-                                    <div class="progress-bar">
-                                        <div class="progress-fill conservation" style="--progress: 48%"></div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Tab: Pérdida Forestal -->
-                <div class="tab-content" id="tab-loss">
-                    <div class="comparison-detail-view">
-                        <div class="detail-header">
-                            <h3><i data-lucide="trending-down"></i> Análisis de Pérdida Forestal</h3>
-                            <p>Comparativa detallada de deforestación por zona</p>
-                        </div>
-                        
-                        <div class="loss-comparison-chart">
-                            <canvas id="lossComparisonChart"></canvas>
-                        </div>
-
-                        <div class="loss-stats-grid">
-                            <div class="loss-stat">
-                                <div class="loss-stat-header">
-                                    <span class="loss-stat-zone">Tierra Bomba</span>
-                                    <span class="loss-stat-value critical">-25%</span>
-                                </div>
-                                <div class="loss-stat-bar">
-                                    <div class="loss-stat-fill critical" style="width: 25%"></div>
-                                </div>
-                                <div class="loss-stat-details">
-                                    <span>450 hectáreas perdidas</span>
-                                    <span>Tasa: 32 ha/año</span>
-                                </div>
-                            </div>
-
-                            <div class="loss-stat">
-                                <div class="loss-stat-header">
-                                    <span class="loss-stat-zone">Cartagena</span>
-                                    <span class="loss-stat-value">-17%</span>
-                                </div>
-                                <div class="loss-stat-bar">
-                                    <div class="loss-stat-fill" style="width: 17%"></div>
-                                </div>
-                                <div class="loss-stat-details">
-                                    <span>3,100 hectáreas perdidas</span>
-                                    <span>Tasa: 221 ha/año</span>
-                                </div>
-                            </div>
-
-                            <div class="loss-stat">
-                                <div class="loss-stat-header">
-                                    <span class="loss-stat-zone">Barú</span>
-                                    <span class="loss-stat-value">-12%</span>
-                                </div>
-                                <div class="loss-stat-bar">
-                                    <div class="loss-stat-fill" style="width: 12%"></div>
-                                </div>
-                                <div class="loss-stat-details">
-                                    <span>200 hectáreas perdidas</span>
-                                    <span>Tasa: 14 ha/año</span>
-                                </div>
-                            </div>
-
-                            <div class="loss-stat">
-                                <div class="loss-stat-header">
-                                    <span class="loss-stat-zone">La Boquilla</span>
-                                    <span class="loss-stat-value low">-5%</span>
-                                </div>
-                                <div class="loss-stat-bar">
-                                    <div class="loss-stat-fill low" style="width: 5%"></div>
-                                </div>
-                                <div class="loss-stat-details">
-                                    <span>120 hectáreas perdidas</span>
-                                    <span>Tasa: 9 ha/año</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Tab: Presión Ambiental -->
-                <div class="tab-content" id="tab-pressure">
-                    <div class="pressure-matrix">
-                        <div class="matrix-header">
-                            <h3><i data-lucide="activity"></i> Matriz de Presión Ambiental</h3>
-                            <p>Intensidad de factores externos por zona (escala 1-10)</p>
-                        </div>
-
-                        <div class="matrix-grid">
-                            <div class="matrix-row">
-                                <div class="matrix-label">Turismo</div>
-                                <div class="matrix-cell" data-value="9">
-                                    <div class="matrix-bar" style="width: 90%"></div>
-                                    <span class="matrix-text">Cartagena</span>
-                                </div>
-                                <div class="matrix-cell" data-value="8">
-                                    <div class="matrix-bar" style="width: 80%"></div>
-                                    <span class="matrix-text">Tierra Bomba</span>
-                                </div>
-                                <div class="matrix-cell" data-value="5">
-                                    <div class="matrix-bar" style="width: 50%"></div>
-                                    <span class="matrix-text">La Boquilla</span>
-                                </div>
-                                <div class="matrix-cell" data-value="10">
-                                    <div class="matrix-bar" style="width: 100%"></div>
-                                    <span class="matrix-text">Barú</span>
-                                </div>
-                            </div>
-
-                            <div class="matrix-row">
-                                <div class="matrix-label">Desarrollo Hotelero</div>
-                                <div class="matrix-cell" data-value="8">
-                                    <div class="matrix-bar" style="width: 80%"></div>
-                                    <span class="matrix-text">Cartagena</span>
-                                </div>
-                                <div class="matrix-cell" data-value="10">
-                                    <div class="matrix-bar" style="width: 100%"></div>
-                                    <span class="matrix-text">Tierra Bomba</span>
-                                </div>
-                                <div class="matrix-cell" data-value="3">
-                                    <div class="matrix-bar" style="width: 30%"></div>
-                                    <span class="matrix-text">La Boquilla</span>
-                                </div>
-                                <div class="matrix-cell" data-value="9">
-                                    <div class="matrix-bar" style="width: 90%"></div>
-                                    <span class="matrix-text">Barú</span>
-                                </div>
-                            </div>
-
-                            <div class="matrix-row">
-                                <div class="matrix-label">Erosión Costera</div>
-                                <div class="matrix-cell" data-value="7">
-                                    <div class="matrix-bar" style="width: 70%"></div>
-                                    <span class="matrix-text">Cartagena</span>
-                                </div>
-                                <div class="matrix-cell" data-value="10">
-                                    <div class="matrix-bar" style="width: 100%"></div>
-                                    <span class="matrix-text">Tierra Bomba</span>
-                                </div>
-                                <div class="matrix-cell" data-value="6">
-                                    <div class="matrix-bar" style="width: 60%"></div>
-                                    <span class="matrix-text">La Boquilla</span>
-                                </div>
-                                <div class="matrix-cell" data-value="8">
-                                    <div class="matrix-bar" style="width: 80%"></div>
-                                    <span class="matrix-text">Barú</span>
-                                </div>
-                            </div>
-
-                            <div class="matrix-row">
-                                <div class="matrix-label">Urbanización</div>
-                                <div class="matrix-cell" data-value="9">
-                                    <div class="matrix-bar" style="width: 90%"></div>
-                                    <span class="matrix-text">Cartagena</span>
-                                </div>
-                                <div class="matrix-cell" data-value="7">
-                                    <div class="matrix-bar" style="width: 70%"></div>
-                                    <span class="matrix-text">Tierra Bomba</span>
-                                </div>
-                                <div class="matrix-cell" data-value="4">
-                                    <div class="matrix-bar" style="width: 40%"></div>
-                                    <span class="matrix-text">La Boquilla</span>
-                                </div>
-                                <div class="matrix-cell" data-value="6">
-                                    <div class="matrix-bar" style="width: 60%"></div>
-                                    <span class="matrix-text">Barú</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
         </section>
     </main>
 
+    <!-- COMPARISON SECTION (INDEPENDIENTE - SIN SIDEBAR) -->
+    <section class="comparison-section" id="comparisonSection">
+        <div class="comparison-inner">
+            <div class="section-header" data-animate="fade-up">
+                <div class="section-tag">
+                    <i data-lucide="bar-chart-3"></i>
+                    <span>Análisis Comparativo</span>
+                </div>
+                <h2>Comparación entre Zonas</h2>
+                <p>Análisis comparativo 2010-2024: pérdida de cobertura y presión turística</p>
+            </div>
+
+            <div class="comparison-tabs" data-animate="fade-up">
+                <button class="tab-btn active" data-tab="overview">
+                    <i data-lucide="layout-grid"></i>
+                    Vista General
+                </button>
+                <button class="tab-btn" data-tab="loss">
+                    <i data-lucide="trending-down"></i>
+                    Pérdida Forestal
+                </button>
+                <button class="tab-btn" data-tab="pressure">
+                    <i data-lucide="activity"></i>
+                    Presión Ambiental
+                </button>
+            </div>
+
+            <!-- Tab: Vista General (se genera dinámicamente) -->
+            <div class="tab-content active" id="tab-overview">
+                <div class="comparison-grid" id="comparisonGrid">
+                    <!-- Se genera dinámicamente desde script.js -->
+                </div>
+            </div>
+
+            <!-- Tab: Pérdida Forestal -->
+            <div class="tab-content" id="tab-loss">
+                <div class="comparison-detail-view">
+                    <div class="detail-header">
+                        <h3><i data-lucide="trending-down"></i> Análisis de Pérdida Forestal</h3>
+                        <p>Comparativa detallada de deforestación por zona</p>
+                    </div>
+                    
+                    <div class="loss-comparison-chart">
+                        <canvas id="lossComparisonChart"></canvas>
+                    </div>
+
+                    <div class="loss-stats-grid" id="lossStatsGrid">
+                        <!-- Se genera dinámicamente -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tab: Presión Ambiental -->
+            <div class="tab-content" id="tab-pressure">
+                <div class="pressure-view">
+                    <div class="detail-header">
+                        <h3><i data-lucide="activity"></i> Índice de Presión Ambiental</h3>
+                        <p>Intensidad de factores externos por zona (escala 1-10)</p>
+                    </div>
+                    <div class="pressure-chart-container">
+                        <canvas id="pressureRadarChart"></canvas>
+                    </div>
+                    <div class="pressure-details" id="pressureDetails">
+                        <!-- Se genera dinámicamente -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- FOOTER -->
     <footer class="footer">
+        <!-- Quote banner -->
+        <div class="footer-quote">
+            <i data-lucide="quote"></i>
+            <blockquote>"El manglar no es solo un árbol. Es el pulmón de la costa, el hogar de cien especies y el escudo de las comunidades. Perderlo es perder mucho más que un bosque."</blockquote>
+            <cite>— Invemar, Informe de Estado de los Manglares en Colombia</cite>
+        </div>
+
         <div class="footer-content">
             <div class="footer-section">
-                <h4>Fuentes de Datos</h4>
+                <h4><i data-lucide="database"></i> Fuentes de Datos</h4>
                 <ul>
-                    <li>Global Forest Watch (Hansen et al.)</li>
-                    <li>Corporación de Turismo de Cartagena</li>
-                    <li>IDEAM Colombia</li>
-                    <li>Invemar</li>
+                    <li><a href="https://www.globalforestwatch.org" target="_blank" rel="noopener">Global Forest Watch — Hansen et al. (2024)</a></li>
+                    <li><a href="https://www.cartagenadeindias.travel" target="_blank" rel="noopener">Corporación de Turismo de Cartagena</a></li>
+                    <li><a href="https://www.ideam.gov.co" target="_blank" rel="noopener">IDEAM Colombia — Monitoreo de Bosques</a></li>
+                    <li><a href="https://www.invemar.org.co" target="_blank" rel="noopener">Invemar — Estado de Manglares Colombia</a></li>
                 </ul>
             </div>
             <div class="footer-section">
-                <h4>Metodología</h4>
-                <p>Análisis de pérdida de cobertura forestal 2001-2024 usando datos de satélite Landsat.</p>
+                <h4><i data-lucide="flask-conical"></i> Metodología</h4>
+                <p>Análisis de pérdida de cobertura forestal 2001-2024 usando imágenes satelitales <strong>Landsat 7/8/9</strong>. Los datos de turismo corresponden a registros oficiales de la Corporación de Turismo de Cartagena y el Ministerio de Comercio de Colombia.</p>
             </div>
             <div class="footer-section">
-                <h4>Proyecto</h4>
-                <p>Desarrollado con fines educativos y de concienciación ambiental.</p>
+                <h4><i data-lucide="info"></i> Acerca del Proyecto</h4>
+                <p>Desarrollado con fines educativos y de concienciación ambiental. Los datos son verificados y provienen de fuentes científicas e institucionales públicas.</p>
+                <div class="footer-badges">
+                    <span class="footer-badge"><i data-lucide="check-circle"></i> Datos verificados</span>
+                    <span class="footer-badge"><i data-lucide="globe"></i> Open Data</span>
+                </div>
             </div>
         </div>
         <div class="footer-bottom">
-            <p>&copy; 2024 El Paraíso que se Borra | Datos verificados y actualizados</p>
+            <p>&copy; 2026 El Paraíso que se Borra</p>
+            <p class="footer-note">Datos provenientes de fuentes científicas públicas · Todos los derechos reservados</p>
         </div>
     </footer>
 
