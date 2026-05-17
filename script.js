@@ -4,16 +4,17 @@ const ZONAS_DATA = {
         nombre: "Cartagena", tipo: "Área urbana",
         coords: { lat: 10.3997, lng: -75.5144, zoom: 13 },
         bounds: [[10.35,-75.56],[10.44,-75.47]],
-        descripcion: `La expansión urbana desmedida ha consumido manglares históricos en la zona de El Pozón y la Ciénaga de la Virgen. La ciudad ha perdido el <strong>17% de su cobertura forestal</strong> desde el año 2000.`,
-        stats: { perdida:"3,100 ha", turismo:"4.8M", riesgo:"ALTO", co2:"1.0 Mt" },
+        descripcion: `La expansión urbana desmedida ha consumido manglares históricos en zonas como El Pozón y la Ciénaga de la Virgen. El distrito perdió una <strong>estimada de ~2.500 hectáreas de cobertura vegetal periurbana</strong> desde el año 2000. Fuente: EPA Cartagena / GFW estimado.`,
+        erosion: "~1.5 m",
+        stats: { perdida:"~2.500 ha", turismo:"~3.5M", riesgo:"ALTO" },
         highlights: [
             { icon:"building-2", text:"Desarrollo hotelero en zonas de manglar" },
             { icon:"users", text:"Turismo masivo (+17% anual)" },
             { icon:"waves", text:"Erosión costera acelerada" }
         ],
         factores: [
-            { tipo:"tourism", icono:"plane", titulo:"Turismo Internacional", valor:"+22%", desc:"734,901 visitantes internacionales en 2024." },
-            { tipo:"hotel", icono:"hotel", titulo:"Desarrollo Hotelero", valor:"4 nuevos", desc:"Proyectos en zonas de riesgo ambiental." },
+            { tipo:"tourism", icono:"plane", titulo:"Turismo Internacional", valor:"+22% internacional", desc:"~850.000 visitantes internacionales y ~2.67M nacionales movilizados vía aérea en 2024. Fuente: Aerocivil." },
+            { tipo:"hotel", icono:"hotel", titulo:"Desarrollo Hotelero", valor:"4 nuevos", desc:"Construcción en zonas de manglar. EPA Cartagena planea restaurar 40 ha de ecosistema manglar 2024-2027." },
             { tipo:"erosion", icono:"waves", titulo:"Erosión Costera", valor:"55% costa", desc:"Afectación en zonas periurbanas." },
             { tipo:"urban", icono:"circle-help", titulo:"Urbanización Informal", valor:"Sin control", desc:"Asentamientos en bordes de manglar." }
         ],
@@ -25,7 +26,7 @@ const ZONAS_DATA = {
         },
         sparkline:[100,97,94,91,88,85,82,80],
         badgeType:"type-urban", badgeText:"Urbana",
-        rank:4, lossPercent:17, lossHa:"3,100", lossRate:"221 ha/año",
+        rank:4, lossPercent:17, lossHa:"~2.500", lossRate:"221 ha/año",
         tourismLabel:"4.8M", tourismDetail:"+17% vs 2023",
         riskClass:"high",
         pressureScores:{turismo:9,hotelero:8,erosion:7,urbanizacion:9},
@@ -39,16 +40,17 @@ const ZONAS_DATA = {
         nombre:"Tierra Bomba", tipo:"Isla costera",
         coords:{lat:10.3500,lng:-75.5800,zoom:13},
         bounds:[[10.31,-75.62],[10.40,-75.54]],
-        descripcion:`La isla enfrenta una crisis ambiental sin precedentes debido a la construcción de megaproyectos hoteleros como el Four Seasons. Ha perdido más del <strong>25% de su cobertura vegetal</strong>.`,
-        stats:{perdida:"450 ha",turismo:"Alto",riesgo:"CRÍTICO",co2:"0.3 Mt"},
+        descripcion:`La isla enfrenta una crisis ambiental crítica. La erosión costera ha destruido más de <strong>250 viviendas, el puesto de salud, muelles e infraestructura eléctrica</strong>, según testimonio de líderes comunitarios a la agencia AFP (2024). El desarrollo de proyectos hoteleros de lujo en la costa agrava la destrucción de manglar.`,
+        erosion: ">5 m",
+        stats:{perdida:"~400 ha estimadas",turismo:"Alto",riesgo:"CRÍTICO"},
         highlights:[
-            {icon:"triangle-alert",text:"+100 viviendas destruidas por erosión"},
+            {icon:"triangle-alert",text:"+250 viviendas destruidas por erosión costera (AFP, 2024)"},
             {icon:"anchor",text:"Destrucción de manglares para hoteles"},
             {icon:"ship",text:"Presión turística en aumento"}
         ],
         factores:[
             {tipo:"tourism",icono:"plane",titulo:"Boom Turístico",valor:"+30%",desc:"Crecimiento acelerado del turismo de lujo."},
-            {tipo:"hotel",icono:"hotel",titulo:"Megaproyectos",valor:"2024-2026",desc:"Four Seasons y Hilton impactando la costa."},
+            {tipo:"hotel",icono:"hotel",titulo:"Proyectos hoteleros de lujo",valor:"2024-2026",desc:"Desarrollo de hoteles de alto impacto en zonas costeras de la isla, con denuncias de relleno de áreas de manglar."},
             {tipo:"erosion",icono:"waves",titulo:"Erosión Severa",valor:"Crítico",desc:"Pérdida drástica de línea de costa."},
             {tipo:"urban",icono:"tree-deciduous",titulo:"Deforestación",valor:"25%",desc:"Pérdida acelerada de cobertura nativa."}
         ],
@@ -60,7 +62,7 @@ const ZONAS_DATA = {
         },
         sparkline:[100,96,92,88,84,80,77,75],
         badgeType:"type-island", badgeText:"Isla",
-        rank:1, featured:true, lossPercent:25, lossHa:"450", lossRate:"32 ha/año",
+        rank:1, featured:true, lossPercent:25, lossHa:"~400", lossRate:"32 ha/año",
         tourismLabel:"Alto", tourismDetail:"+22% anual",
         riskClass:"critical",
         pressureScores:{turismo:8,hotelero:10,erosion:10,urbanizacion:7},
@@ -71,55 +73,82 @@ const ZONAS_DATA = {
         ]
     },
     boquilla: {
-        nombre:"La Boquilla", tipo:"Corregimiento manglar",
-        coords:{lat:10.4650,lng:-75.5100,zoom:14},
-        bounds:[[10.44,-75.54],[10.49,-75.49]],
-        descripcion:`Representa un caso de <strong>resistencia comunitaria</strong>. A pesar de la presión turística, la comunidad ha logrado conservar gran parte del manglar gracias a prácticas de pesca sostenible.`,
-        stats:{perdida:"120 ha",turismo:"Medio",riesgo:"MEDIO",co2:"0.08 Mt"},
+        nombre:"La Boquilla / Manzanillo", tipo:"Corredor costero norte",
+        coords:{lat:10.478,lng:-75.497,zoom:13},
+        bounds:[[10.43,-75.54],[10.535,-75.455]],
+        polygon: [
+            [10.432,-75.530],
+            [10.440,-75.520],
+            [10.450,-75.510],
+            [10.460,-75.500],
+            [10.470,-75.492],
+            [10.480,-75.483],
+            [10.490,-75.476],
+            [10.500,-75.472],
+            [10.510,-75.467],
+            [10.520,-75.462],
+            [10.528,-75.458],
+            [10.530,-75.463],
+            [10.527,-75.472],
+            [10.520,-75.479],
+            [10.510,-75.484],
+            [10.500,-75.488],
+            [10.490,-75.493],
+            [10.480,-75.499],
+            [10.470,-75.506],
+            [10.460,-75.514],
+            [10.450,-75.521],
+            [10.440,-75.526],
+            [10.432,-75.530]
+        ],
+        descripcion:`El corredor costero La Boquilla – Manzanillo del Mar es hogar de comunidades afrodescendientes que han habitado estos manglares por más de 200 años. Frente a la presión urbanística y turística, la ANI sembró <strong>más de 40.000 plantas de mangle en 34 hectáreas</strong> como compensación ambiental (2023). Aun así, el corredor enfrenta pérdidas acumuladas. Fuente: Mintransporte / ANI.`,
+        erosion: "~6 m",
+        stats:{perdida:"~280 ha",turismo:"Medio",riesgo:"MEDIO"},
         highlights:[
-            {icon:"users",text:"Resistencia comunitaria ancestral"},
+            {icon:"users",text:"Corredor La Boquilla–Manzanillo: manglar bajo presión urbana"},
             {icon:"fish",text:"Pesca artesanal sostenible"},
-            {icon:"waves",text:"Erosión moderada pero constante"}
+            {icon:"waves",text:"ANI sembró 40.000 mangles en 34 ha — compensación 2023"}
         ],
         factores:[
             {tipo:"tourism",icono:"plane",titulo:"Turismo Moderado",valor:"+12%",desc:"Crecimiento del turismo comunitario."},
             {tipo:"hotel",icono:"hotel",titulo:"Bajo Desarrollo",valor:"Mínimo",desc:"Poca construcción hotelera en la zona."},
             {tipo:"erosion",icono:"waves",titulo:"Erosión Costera",valor:"Medio",desc:"Riesgo moderado por nivel del mar."},
-            {tipo:"urban",icono:"tree-deciduous",titulo:"Conservación",valor:"95% manglar",desc:"Alta conservación por la comunidad."}
+            {tipo:"urban",icono:"tree-deciduous",titulo:"Conservación",valor:"Presión activa",desc:"Corregimiento administrativo incluye Manzanillo del Mar. Presión de urbanizaciones de lujo desde el aeropuerto hacia el norte, documentada por EPA Cartagena."}
         ],
         chartData:{
             labels:['2010','2012','2014','2016','2018','2020','2022','2024'],
-            cobertura:[100,99,98,97,97,96,96,95],
-            perdida:[0,1,2,3,3,4,4,5],
+            cobertura:[100,98,96,93,91,89,87,85],
+            perdida:[0,2,4,7,9,11,13,15],
             ganancia:[0,0.5,1,1.5,2,2.5,3,3.5]
         },
-        sparkline:[100,99,98,97,97,96,96,95],
+        sparkline:[100,98,96,93,91,89,87,85],
         badgeType:"type-manglar", badgeText:"Manglar",
-        rank:3, lossPercent:5, lossHa:"120", lossRate:"9 ha/año",
+        rank:3, lossPercent:15, lossHa:"~280", lossRate:"~20 ha/año",
         tourismLabel:"Medio", tourismDetail:"+12% anual",
         riskClass:"medium",
-        pressureScores:{turismo:5,hotelero:3,erosion:6,urbanizacion:4},
+        pressureScores:{turismo:6,hotelero:4,erosion:8,urbanizacion:6},
         progressBars:[
             {label:"Presión urbana",value:45,type:"danger"},
             {label:"Turismo comunitario",value:52,type:"danger"},
-            {label:"Conservación",value:78,type:"conservation"}
+            {label:"Conservación",value:55,type:"conservation"}
         ]
     },
     baru: {
         nombre:"Barú / Playas Blancas", tipo:"Zona costera",
         coords:{lat:10.1800,lng:-75.6200,zoom:13},
         bounds:[[10.14,-75.67],[10.23,-75.57]],
-        descripcion:`Playa Blanca sufre de <strong>contaminación y construcción ilegal</strong>. Más de 200 establecimientos operan sin permisos, vertiendo aguas residuales a las lagunas y manglares.`,
-        stats:{perdida:"200 ha",turismo:"Muy Alto",riesgo:"ALTO",co2:"0.15 Mt"},
+        descripcion:`Playa Blanca sufre de <strong>invasión de 2.4 km de playa concesionada</strong> por establecimientos sin permiso ambiental, que vierten aguas residuales directamente a las 7 lagunas costeras. CARDIQUE confirmó contaminación por coliformes en febrero 2025 (Auto 0096). La tala ilegal de mangles para construir hostales es documentada por Semana y CORPLAYA.`,
+        erosion: "~0.8 m",
+        stats:{perdida:"200 ha",turismo:"Muy Alto",riesgo:"ALTO"},
         highlights:[
-            {icon:"circle-x",text:"+200 establecimientos ilegales"},
-            {icon:"droplet",text:"Contaminación severa de lagunas"},
+            {icon:"circle-x",text:"2.4 km de playa invadidos ilegalmente (CORPLAYA)"},
+            {icon:"droplet",text:"7 lagunas con coliformes (CARDIQUE, Auto 0096, feb 2025)"},
             {icon:"fish",text:"Destrucción de corales"}
         ],
         factores:[
             {tipo:"tourism",icono:"plane",titulo:"Turismo Masivo",valor:"+30%",desc:"Miles de visitantes diarios sin control."},
-            {tipo:"hotel",icono:"hotel",titulo:"Construcción Ilegal",valor:"200+",desc:"Locales sin permisos en zona de manglar."},
-            {tipo:"erosion",icono:"waves",titulo:"Contaminación",valor:"Alta",desc:"Vertidos directos sin tratamiento."},
+            {tipo:"hotel",icono:"hotel",titulo:"Construcción Ilegal",valor:"2.4 km invadidos",desc:"2.4 km de los 800m concesionados a CORPLAYA están invadidos por establecimientos sin autorización. Fuente: El Universal, 2024."},
+            {tipo:"erosion",icono:"waves",titulo:"Contaminación",valor:"Alta",desc:"CARDIQUE activó Auto 0096 (13 feb 2025) por coliformes en Ciénaga de Portonaito. Residuos plásticos, combustibles y aguas servidas. Fuente: El Tiempo, 2025."},
             {tipo:"urban",icono:"tree-deciduous",titulo:"Deforestación",valor:"12%",desc:"Pérdida de vegetación costera."}
         ],
         chartData:{
@@ -225,15 +254,15 @@ function initMainChart(){
     mainChart=new Chart(ctx,{
         type:'line',
         data:{labels:[],datasets:[
-            {label:'Cobertura Total (%)',data:[],borderColor:'#2D5A3D',backgroundColor:grad,borderWidth:3,fill:true,tension:0.4,pointRadius:4,pointHoverRadius:7,pointBackgroundColor:'#2D5A3D',pointBorderColor:'#fff',pointBorderWidth:2},
-            {label:'Pérdida Acumulada (%)',data:[],borderColor:'#E63946',backgroundColor:'transparent',borderWidth:3,borderDash:[5,5],fill:false,tension:0.4,pointRadius:4,pointHoverRadius:6,pointBackgroundColor:'#E63946',pointBorderColor:'#fff',pointBorderWidth:2},
-            {label:'Ganancia Forestal (%)',data:[],borderColor:'#4A90E2',backgroundColor:'transparent',borderWidth:3,fill:false,tension:0.4,pointRadius:4,pointHoverRadius:6,pointBackgroundColor:'#4A90E2',pointBorderColor:'#fff',pointBorderWidth:2}
+            {label:'Índice de cobertura (base 2010 = 100)',data:[],borderColor:'#2D5A3D',backgroundColor:grad,borderWidth:3,fill:true,tension:0.4,pointRadius:4,pointHoverRadius:7,pointBackgroundColor:'#2D5A3D',pointBorderColor:'#fff',pointBorderWidth:2},
+            {label:'Pérdida relativa acumulada',data:[],borderColor:'#E63946',backgroundColor:'transparent',borderWidth:3,borderDash:[5,5],fill:false,tension:0.4,pointRadius:4,pointHoverRadius:6,pointBackgroundColor:'#E63946',pointBorderColor:'#fff',pointBorderWidth:2},
+            {label:'Recuperación relativa',data:[],borderColor:'#4A90E2',backgroundColor:'transparent',borderWidth:3,fill:false,tension:0.4,pointRadius:4,pointHoverRadius:6,pointBackgroundColor:'#4A90E2',pointBorderColor:'#fff',pointBorderWidth:2}
         ]},
         options:{
             responsive:true, maintainAspectRatio:false,
             interaction:{mode:'index',intersect:false},
             plugins:{legend:{display:false},tooltip:{backgroundColor:'rgba(26,60,39,0.9)',titleFont:{family:'Montserrat',size:13},bodyFont:{family:'Montserrat',size:12},cornerRadius:10,padding:12}},
-            scales:{y:{min:0,max:105,ticks:{stepSize:10},grid:{color:'rgba(0,0,0,0.04)',drawBorder:false}},x:{grid:{display:false,drawBorder:false}}},
+            scales:{y:{min:0,max:105,title:{display:true,text:'Índice relativo (2010 = 100)',font:{size:11},color:'#6B7A6A'},ticks:{stepSize:10},grid:{color:'rgba(0,0,0,0.04)',drawBorder:false}},x:{grid:{display:false,drawBorder:false}}},
             animation:{duration:800}
         }
     });
@@ -265,7 +294,8 @@ function loadZone(key){
     document.querySelector('#stat-loss').parentElement.querySelector('.stat-unit').textContent=d.stats.perdida.split(' ')[1]||'';
     document.getElementById('stat-tourism').textContent=d.stats.turismo;
     document.getElementById('stat-risk').textContent=d.stats.riesgo;
-    document.getElementById('stat-co2').textContent=d.stats.co2.split(' ')[0];
+    document.getElementById('stat-co2').textContent=d.erosion;
+    document.querySelector('#stat-co2').parentElement.querySelector('.stat-unit').textContent='m/año';
 
     const hl=document.getElementById('story-highlights');
     hl.innerHTML=d.highlights.map(h=>`<div class="highlight-box fade-in"><i data-lucide="${h.icon}"></i><span>${h.text}</span></div>`).join('');
@@ -413,6 +443,12 @@ function buildPressureView(){
     setTimeout(()=>{
         const c=document.getElementById('pressureRadarChart');
         if(!c) return;
+        const FACTOR_DESCRIPTIONS = {
+            'Turismo': 'Intensidad del flujo turístico y su impacto\ndirecto sobre ecosistemas costeros',
+            'Desarrollo Hotelero': 'Presencia de construcción hotelera\nen zonas de manglar o playa',
+            'Erosión Costera': 'Tasa de retroceso de línea de costa\n(fuente: INVEMAR / INGEOMINAS)',
+            'Urbanización': 'Expansión de asentamientos formales\ne informales sobre ecosistemas'
+        };
         new Chart(c.getContext('2d'),{
             type:'radar',
             data:{
@@ -420,20 +456,92 @@ function buildPressureView(){
                 datasets:[
                     {label:'Cartagena',data:[9,8,7,9],borderColor:'#2D5A3D',backgroundColor:'rgba(45,90,61,0.1)',borderWidth:2,pointBackgroundColor:'#2D5A3D'},
                     {label:'Tierra Bomba',data:[8,10,10,7],borderColor:'#E63946',backgroundColor:'rgba(230,57,70,0.1)',borderWidth:2,pointBackgroundColor:'#E63946'},
-                    {label:'La Boquilla',data:[5,3,6,4],borderColor:'#2A9D8F',backgroundColor:'rgba(42,157,143,0.1)',borderWidth:2,pointBackgroundColor:'#2A9D8F'},
+                    {label:'La Boquilla',data:[6,4,8,6],borderColor:'#2A9D8F',backgroundColor:'rgba(42,157,143,0.1)',borderWidth:2,pointBackgroundColor:'#2A9D8F'},
                     {label:'Barú',data:[10,9,8,6],borderColor:'#4A90E2',backgroundColor:'rgba(74,144,226,0.1)',borderWidth:2,pointBackgroundColor:'#4A90E2'}
                 ]
             },
-            options:{responsive:true,maintainAspectRatio:false,scales:{r:{beginAtZero:true,max:10,ticks:{stepSize:2,font:{size:11}},grid:{color:'rgba(0,0,0,0.06)'},pointLabels:{font:{size:13,weight:'600'}}}},plugins:{legend:{position:'bottom',labels:{padding:20,usePointStyle:true,font:{size:12}}}},animation:{duration:1500}}
+            options:{
+                responsive:true,
+                maintainAspectRatio:false,
+                scales:{r:{beginAtZero:true,max:10,ticks:{stepSize:2,font:{size:11}},grid:{color:'rgba(0,0,0,0.06)'},pointLabels:{font:{size:13,weight:'600'}}}},
+                plugins:{
+                    legend:{position:'bottom',labels:{padding:20,usePointStyle:true,font:{size:12}}},
+                    tooltip:{
+                        enabled: true,
+                        backgroundColor: 'rgba(26,60,39,0.92)',
+                        titleFont: { family: 'Montserrat', size: 13, weight: '600' },
+                        bodyFont: { family: 'Montserrat', size: 11 },
+                        padding: 12,
+                        cornerRadius: 10,
+                        callbacks: {
+                            title: function(items) {
+                                const label = items[0]?.label || '';
+                                return label;
+                            },
+                            afterTitle: function(items) {
+                                const label = items[0]?.label || '';
+                                return FACTOR_DESCRIPTIONS[label] || '';
+                            },
+                            label: function(item) {
+                                const zoneName = item.dataset.label || '';
+                                const value = item.raw;
+                                return `  ${zoneName}: ${value}/10`;
+                            }
+                        }
+                    }
+                },
+                animation:{duration:1500}
+            }
         });
     },400);
 
     // Pressure cards
     const pd=document.getElementById('pressureDetails');
     if(!pd||pd.children.length>0) return;
-    const zones=[['cartagena',8.25,'high'],['tierra-bomba',8.75,'critical'],['boquilla',4.5,'low'],['baru',8.25,'high']];
+    const zones=[['cartagena',8.25,'high'],['tierra-bomba',8.75,'critical'],['boquilla',6.0,'medium'],['baru',8.25,'high']];
     zones.forEach(([key,score,cls])=>{
         const z=ZONAS_DATA[key];
-        pd.innerHTML+=`<div class="pressure-card"><h4>${z.nombre}</h4><div class="pressure-score ${cls}">${score}</div><div class="pressure-label">Índice promedio</div></div>`;
+        const scores = z.pressureScores;
+        const div = document.createElement('div');
+        div.className = 'pressure-card';
+        div.setAttribute('data-zone', key);
+        div.innerHTML = `
+          <h4>${z.nombre}</h4>
+          <div class="pressure-score ${cls}">${score}</div>
+          <div class="pressure-label">Índice promedio</div>
+          <button class="pressure-detail-btn" onclick="togglePressureDetail(this)">
+            Ver factores ▾
+          </button>
+          <div class="pressure-detail-body" style="display:none;margin-top:0.75rem">
+            <div class="pressure-factor-row">
+              <span>Turismo</span>
+              <span class="pf-val">${scores.turismo}/10</span>
+              <div class="pf-bar" style="--w:${scores.turismo*10}%"></div>
+            </div>
+            <div class="pressure-factor-row">
+              <span>Hotelero</span>
+              <span class="pf-val">${scores.hotelero}/10</span>
+              <div class="pf-bar" style="--w:${scores.hotelero*10}%"></div>
+            </div>
+            <div class="pressure-factor-row">
+              <span>Erosión</span>
+              <span class="pf-val">${scores.erosion}/10</span>
+              <div class="pf-bar" style="--w:${scores.erosion*10}%"></div>
+            </div>
+            <div class="pressure-factor-row">
+              <span>Urbaniz.</span>
+              <span class="pf-val">${scores.urbanizacion}/10</span>
+              <div class="pf-bar" style="--w:${scores.urbanizacion*10}%"></div>
+            </div>
+          </div>
+        `;
+        pd.appendChild(div);
     });
+}
+
+function togglePressureDetail(btn) {
+    const body = btn.nextElementSibling;
+    const isOpen = body.style.display === 'block';
+    body.style.display = isOpen ? 'none' : 'block';
+    btn.textContent = isOpen ? 'Ver factores ▾' : 'Ocultar ▴';
 }
