@@ -1,44 +1,49 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Análisis de la deforestación en Cartagena, Tierra Bomba, La Boquilla y Barú">
     <title>El Paraíso que se Borra | Deforestación en Cartagena</title>
-    
+
     <!-- Fuentes Google -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Playfair+Display:wght@600;700;900&display=swap" rel="stylesheet">
-    
+    <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Playfair+Display:wght@600;700;900&display=swap"
+        rel="stylesheet">
+
     <!-- Leaflet CSS -->
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" crossorigin=""/>
-    
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" crossorigin="" />
+
     <!-- Chart.js -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    
+
     <!-- Lucide Icons -->
     <script src="https://unpkg.com/lucide@latest"></script>
-    
+
     <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
 
     <!-- HERO SECTION -->
     <header class="hero" id="hero">
         <div class="hero-overlay"></div>
-        
+
         <!-- Floating leaves particles -->
         <div class="hero-particles" id="heroParticles"></div>
-        
+
         <div class="hero-content">
             <div class="hero-tag">
                 <i data-lucide="leaf"></i>
                 <span>Investigación Ambiental 2026</span>
             </div>
             <h1 class="hero-title">El Paraíso que se Borra</h1>
-            <p class="hero-subtitle">Mientras Cartagena recibe más turistas que nunca, sus manglares y bosques costeros desaparecen silenciosamente. Cuatro zonas, una misma historia.</p>
-            
+            <p class="hero-subtitle">Mientras Cartagena recibe más turistas que nunca, sus manglares y bosques costeros
+                desaparecen silenciosamente. Cuatro zonas, una misma historia.</p>
+
             <div class="hero-stats">
                 <div class="hero-stat-card">
                     <div class="stat-icon-circle">
@@ -66,7 +71,7 @@
                 </div>
             </div>
         </div>
-        
+
         <div class="scroll-indicator" id="scrollIndicator">
             <div class="mouse">
                 <div class="wheel"></div>
@@ -82,7 +87,8 @@
                 <i data-lucide="scan-search"></i>
             </div>
             <h2>Explora el Impacto Ambiental</h2>
-            <p>Selecciona una de las cuatro zonas de estudio para descubrir cómo la deforestación ha transformado el paisaje de la región de Cartagena entre 2010 y 2024.</p>
+            <p>Selecciona una de las cuatro zonas de estudio para descubrir cómo la deforestación ha transformado el
+                paisaje de la región de Cartagena entre 2010 y 2024.</p>
             <div class="context-zones-preview">
                 <span class="zone-chip" data-zone="cartagena"><i data-lucide="building-2"></i> Cartagena</span>
                 <span class="zone-chip" data-zone="tierra-bomba"><i data-lucide="anchor"></i> Tierra Bomba</span>
@@ -94,14 +100,14 @@
 
     <!-- MAIN DASHBOARD (Sidebar + Content) -->
     <main class="dashboard" id="dashboard">
-        
+
         <!-- SIDEBAR: SELECCIÓN DE ZONAS -->
         <aside class="sidebar" id="sidebar">
             <div class="sidebar-header">
                 <i data-lucide="map-pin"></i>
                 <h2>Zonas de Análisis</h2>
             </div>
-            
+
             <nav class="zone-nav">
                 <button class="zone-btn active" data-zone="cartagena">
                     <div class="zone-icon">
@@ -156,13 +162,13 @@
 
         <!-- CONTENT AREA -->
         <section class="content-area" id="contentArea">
-            
+
             <!-- DATA SECTION (Se carga automáticamente con Cartagena) -->
             <div class="data-section" id="dataSection">
-                
+
                 <!-- VISUALIZACIONES: GRÁFICA + MAPA -->
                 <div class="visualizations">
-                    
+
                     <!-- GRÁFICA TEMPORAL -->
                     <div class="card chart-card glass-card">
                         <div class="card-header">
@@ -199,34 +205,11 @@
                     <div class="card map-card glass-card">
                         <div class="card-header">
                             <div>
-                                <h3><i data-lucide="map"></i> Mapa de Cobertura</h3>
-                                <p class="card-subtitle">Distribución espacial</p>
-                            </div>
-                            <div class="map-controls">
-                                <button class="map-btn active" data-layer="loss">Pérdida</button>
-                                <button class="map-btn" data-layer="gain">Ganancia</button>
-                                <button class="map-btn" data-layer="forest">Bosque</button>
+                                <h3><i data-lucide="map"></i> Vista Geográfica</h3>
+                                <p class="card-subtitle">Localización de las zonas de estudio</p>
                             </div>
                         </div>
                         <div id="map"></div>
-                        <div class="map-legend">
-                            <div class="legend-box">
-                                <span class="legend-color" style="background: #228B22;"></span>
-                                <span>Bosque existente</span>
-                            </div>
-                            <div class="legend-box">
-                                <span class="legend-color" style="background: #E63946;"></span>
-                                <span>Pérdida forestal</span>
-                            </div>
-                            <div class="legend-box">
-                                <span class="legend-color" style="background: #4A90E2;"></span>
-                                <span>Ganancia forestal</span>
-                            </div>
-                            <div class="legend-box">
-                                <span class="legend-color" style="background: rgba(74, 144, 226, 0.5);"></span>
-                                <span>Agua</span>
-                            </div>
-                        </div>
                     </div>
                 </div>
 
@@ -287,12 +270,12 @@
 
                     <div class="story-content">
                         <p class="story-text" id="story-desc">
-                            Cartagena ha perdido el <strong>17% de su cobertura forestal</strong> desde el año 2000, 
-                            equivalente a <strong>3,100 hectáreas</strong> de bosques y manglares. La expansión urbana 
-                            desmedida, la construcción de hoteles de lujo en zonas de manglar y el crecimiento del 
+                            Cartagena ha perdido el <strong>17% de su cobertura forestal</strong> desde el año 2000,
+                            equivalente a <strong>3,100 hectáreas</strong> de bosques y manglares. La expansión urbana
+                            desmedida, la construcción de hoteles de lujo en zonas de manglar y el crecimiento del
                             turismo masivo son los principales factores que aceleran esta pérdida.
                         </p>
-                        
+
                         <div class="story-highlights" id="story-highlights">
                             <!-- Se llena dinámicamente -->
                         </div>
@@ -301,7 +284,7 @@
                     <!-- FACTORES EXTERNOS -->
                     <div class="external-factors">
                         <h3><i data-lucide="circle-help"></i> Factores Externos que Impulsan la Transformación</h3>
-                        
+
                         <div class="factors-grid" id="factors-grid">
                             <!-- Se llena dinámicamente -->
                         </div>
@@ -353,7 +336,7 @@
                         <h3><i data-lucide="trending-down"></i> Análisis de Pérdida Forestal</h3>
                         <p>Comparativa detallada de deforestación por zona</p>
                     </div>
-                    
+
                     <div class="loss-comparison-chart">
                         <canvas id="lossComparisonChart"></canvas>
                     </div>
@@ -387,7 +370,8 @@
         <!-- Quote banner -->
         <div class="footer-quote">
             <i data-lucide="quote"></i>
-            <blockquote>"El manglar no es solo un árbol. Es el pulmón de la costa, el hogar de cien especies y el escudo de las comunidades. Perderlo es perder mucho más que un bosque."</blockquote>
+            <blockquote>"El manglar no es solo un árbol. Es el pulmón de la costa, el hogar de cien especies y el escudo
+                de las comunidades. Perderlo es perder mucho más que un bosque."</blockquote>
             <cite>— Invemar, Informe de Estado de los Manglares en Colombia</cite>
         </div>
 
@@ -395,24 +379,35 @@
             <div class="footer-section">
                 <h4><i data-lucide="database"></i> Fuentes de Datos</h4>
                 <ul>
-                    <li><a href="https://www.globalforestwatch.org" target="_blank" rel="noopener">Global Forest Watch — Hansen et al. (2024)</a></li>
-                    <li><a href="https://www.cartagenadeindias.travel" target="_blank" rel="noopener">Corporación de Turismo de Cartagena</a></li>
-                    <li><a href="https://www.ideam.gov.co" target="_blank" rel="noopener">IDEAM Colombia — Monitoreo de Bosques</a></li>
-                    <li><a href="https://www.invemar.org.co" target="_blank" rel="noopener">Invemar — Estado de Manglares Colombia</a></li>
-                    <li><a href="https://www.aerocivil.gov.co" target="_blank" rel="noopener">Aeronáutica Civil — Estadísticas de pasajeros 2024</a></li>
-                    <li><a href="https://www.cardique.gov.co" target="_blank" rel="noopener">CARDIQUE — Auto 0096, monitoreo Barú, febrero 2025</a></li>
+                    <li><a href="https://www.globalforestwatch.org" target="_blank" rel="noopener">Global Forest Watch —
+                            Hansen et al. (2024)</a></li>
+                    <li><a href="https://www.cartagenadeindias.travel" target="_blank" rel="noopener">Corporación de
+                            Turismo de Cartagena</a></li>
+                    <li><a href="https://www.ideam.gov.co" target="_blank" rel="noopener">IDEAM Colombia — Monitoreo de
+                            Bosques</a></li>
+                    <li><a href="https://www.invemar.org.co" target="_blank" rel="noopener">Invemar — Estado de
+                            Manglares Colombia</a></li>
+                    <li><a href="https://www.aerocivil.gov.co" target="_blank" rel="noopener">Aeronáutica Civil —
+                            Estadísticas de pasajeros 2024</a></li>
+                    <li><a href="https://www.cardique.gov.co" target="_blank" rel="noopener">CARDIQUE — Auto 0096,
+                            monitoreo Barú, febrero 2025</a></li>
                     <li>AFP — Reportaje erosión costera Tierra Bomba, marzo 2024</li>
                     <li>CORPLAYA — Corporación para el Desarrollo de Playa Blanca-Barú</li>
-                    <li><a href="https://www.mintransporte.gov.co" target="_blank" rel="noopener">ANI / Mintransporte — Siembra de manglar La Boquilla, 2023</a></li>
+                    <li><a href="https://www.mintransporte.gov.co" target="_blank" rel="noopener">ANI / Mintransporte —
+                            Siembra de manglar La Boquilla, 2023</a></li>
                 </ul>
             </div>
             <div class="footer-section">
                 <h4><i data-lucide="flask-conical"></i> Metodología</h4>
-                <p>Análisis de pérdida de cobertura forestal 2001-2024 usando imágenes satelitales <strong>Landsat 7/8/9</strong>. Los datos de turismo corresponden a registros oficiales de la Corporación de Turismo de Cartagena y el Ministerio de Comercio de Colombia. Los datos de cobertura se presentan como índice relativo con base 2010 = 100, no como porcentaje absoluto de cobertura forestal.</p>
+                <p>Análisis de pérdida de cobertura forestal 2001-2024 usando imágenes satelitales <strong>Landsat
+                        7/8/9</strong>. Los datos de turismo corresponden a registros oficiales de la Corporación de
+                    Turismo de Cartagena y el Ministerio de Comercio de Colombia. Los datos de cobertura se presentan
+                    como índice relativo con base 2010 = 100, no como porcentaje absoluto de cobertura forestal.</p>
             </div>
             <div class="footer-section">
                 <h4><i data-lucide="info"></i> Acerca del Proyecto</h4>
-                <p>Desarrollado con fines educativos y de concienciación ambiental. Los datos son verificados y provienen de fuentes científicas e institucionales públicas.</p>
+                <p>Desarrollado con fines educativos y de concienciación ambiental. Los datos son verificados y
+                    provienen de fuentes científicas e institucionales públicas.</p>
                 <div class="footer-badges">
                     <span class="footer-badge"><i data-lucide="check-circle"></i> Datos verificados</span>
                     <span class="footer-badge"><i data-lucide="globe"></i> Open Data</span>
@@ -421,7 +416,8 @@
         </div>
         <div class="footer-bottom">
             <p>&copy; 2026 El Paraíso que se Borra</p>
-            <p class="footer-note">Datos provenientes de fuentes científicas públicas · Todos los derechos reservados</p>
+            <p class="footer-note">Datos provenientes de fuentes científicas públicas · Todos los derechos reservados
+            </p>
         </div>
     </footer>
 
@@ -430,10 +426,11 @@
 
     <!-- Main Script -->
     <script src="script.js"></script>
-    
+
     <!-- Initialize Lucide Icons -->
     <script>
         lucide.createIcons();
     </script>
 </body>
+
 </html>
