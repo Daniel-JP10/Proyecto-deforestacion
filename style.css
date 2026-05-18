@@ -45,7 +45,7 @@
 }
 
 * { margin:0; padding:0; box-sizing:border-box; }
-html { scroll-behavior: smooth; }
+html { scroll-behavior: smooth; overflow-x: hidden; }
 
 body {
     font-family: 'Montserrat', sans-serif;
@@ -1562,4 +1562,13 @@ h1,h2,h3,h4 {
 @media (max-width: 520px) {
   .pressure-detail-btn { font-size: 0.72rem; }
   .pressure-factor-row { font-size: 0.72rem; }
+}
+
+/* ============================================
+   18. MOBILE OVERFLOW FIX
+   ============================================ */
+@media (max-width: 768px) {
+  .hero {
+    background-attachment: scroll;
+  }
 }
