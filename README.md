@@ -73,30 +73,34 @@ El análisis abarca cuatro zonas representativas de la diversidad ecológica y l
 
 ```mermaid
 flowchart TD
-    A[Inicio / Hero Narrativo] -->|Desplazamiento / Scroll| B[Transición y Contexto Regional]
-    B --> C[Dashboard Interactivo Principal]
+    A["Inicio / Hero Narrativo"] --> B["Transición y Contexto Regional"]
+    B --> C["Dashboard Interactivo Principal"]
     
-    subgraph Dashboard [Dashboard de Exploración por Zonas]
-        D[Selector de Zonas: Cartagena | Tierra Bomba | Boquilla | Barú]
-        E[Mapa Dinámico Leaflet: Marcadores y Polígonos]
-        F[Gráfica Temporal Chart.js con Deslizador 2010-2024]
-        G[Storytelling Contextual: Métricas, Relatos y Factores Externos]
+    subgraph Dashboard ["Dashboard de Exploración por Zonas"]
+        D["Selector de Zonas: Cartagena, Tierra Bomba, Boquilla, Barú"]
+        E["Mapa Dinámico Leaflet: Marcadores y Polígonos"]
+        F["Gráfica Temporal Chart.js con Deslizador 2010-2024"]
+        G["Storytelling Contextual: Métricas, Relatos y Factores"]
         D --> E
         D --> F
         D --> G
     end
     
-    C --> Dashboard
-    Dashboard --> H[Módulo de Análisis Comparativo]
+    C --> D
+    D --> H["Módulo de Análisis Comparativo"]
     
-    subgraph Comparacion [Análisis Multivariable]
-        I[Pestaña Vista General: Tarjetas de Resumen y Ranking]
-        J[Pestaña Pérdida Forestal: Gráfica de Barras Comparativa]
-        K[Pestaña Presión Ambiental: Radar Multidimensional]
+    subgraph Comparacion ["Análisis Multivariable"]
+        I["Pestaña Vista General: Resumen y Ranking"]
+        J["Pestaña Pérdida Forestal: Comparativa de Cobertura"]
+        K["Pestaña Presión Ambiental: Radar Multidimensional"]
     end
     
-    H --> Comparacion
-    Comparacion --> L[Pie de Página: Metodología, Fuentes Científicas y Licencia]
+    H --> I
+    H --> J
+    H --> K
+    I --> L["Pie de Página: Metodología, Fuentes Científicas y Autoría"]
+    J --> L
+    K --> L
 ```
 
 ---
